@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="co.edu.unbosque.model.EstudianteDTO"%>
+<%@page import="co.edu.unbosque.controller.EstudianteDataSource"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,32 +15,58 @@
 	<div class="container">
 		<h2>Registro Exitoso</h2>
 		<%
-		EstudianteDTO estudiante = (EstudianteDTO) request.getAttribute("estudiante");
+		EstudianteDTO estudianteUnico = (EstudianteDTO) request.getAttribute("estudiante");
+		List<EstudianteDTO> estudiantes = (List<EstudianteDTO>) request.getAttribute("estudiantes");
 		%>
 		<p>
 			Nombre:
-			<%=estudiante.getNombre()%>
+			<%=estudianteUnico.getNombre()%>
 		</p>
 		<p>
 			Apellido:
-			<%=estudiante.getApellido()%>
+			<%=estudianteUnico.getApellido()%>
 		</p>
 		<p>
 			Correo:
-			<%=estudiante.getCorreo()%>
+			<%=estudianteUnico.getCorreo()%>
 		</p>
 		<p>
 			Fecha de Nacimiento:
-			<%=estudiante.getFechaNacimiento()%>
+			<%=estudianteUnico.getFechaNacimiento()%>
 		</p>
 		<p>
 			ID de Estudiante:
-			<%=estudiante.getIdEstudiante()%>
+			<%=estudianteUnico.getIdEstudiante()%>
 		</p>
 		<p>
 			Programa:
-			<%=estudiante.getPrograma()%>
+			<%=estudianteUnico.getPrograma()%>
 		</p>
+
+		<table border="1">
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Correo</th>
+				<th>Fecha de Nacimiento</th>
+				<!-- Puedes agregar más columnas según los atributos de EstudianteDTO -->
+			</tr>
+			<%
+			for (EstudianteDTO estudiante : estudiantes) {
+			%>
+			<tr>
+				<td><%=estudiante.getIdEstudiante()%></td>
+				<td><%=estudiante.getNombre()%></td>
+				<td><%=estudiante.getApellido()%></td>
+				<td><%=estudiante.getCorreo()%></td>
+				<td><%=estudiante.getFechaNacimiento()%></td>
+				<!-- Puedes agregar más columnas según los atributos de EstudianteDTO -->
+			</tr>
+			<%
+			}
+			%>
+		</table>
 	</div>
 
 </body>
