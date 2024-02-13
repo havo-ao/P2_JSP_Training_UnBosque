@@ -2,5 +2,5 @@
 .project
 .settings
 build
-pom.xml
 target
+/bin/
